@@ -27,3 +27,22 @@ Constraints:
 
 """
 # Solution:
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        # Negative numbers are not palindromes
+        if x < 0:
+            return False
+
+        # Convert the number to a string and check if it reads the same backward
+        str_x = str(x)
+        return str_x == str_x[::-1]
+
+
+# Example usage
+solution = Solution()
+print(solution.isPalindrome(121))
+print(solution.isPalindrome(-121))
+print(solution.isPalindrome(10))
+print(solution.isPalindrome(12321))
+
+
