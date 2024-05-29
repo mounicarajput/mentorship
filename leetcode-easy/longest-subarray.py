@@ -43,6 +43,22 @@ nums2 = [3, 1, 5, 11, 13]
 print(longestNiceSubarray(nums2))  # Output: 1
 
 
+def numSteps(s: str) -> int:
+    steps = 0
+    carry = 0  # Represents if we have an outstanding carry to add
+
+    # Traverse the binary string from the least significant bit to the most significant bit
+    for i in range(len(s) - 1, 0, -1):
+        bit = s[i]
+        if bit == '0':
+            steps += 1 + carry  # If the bit is '0' and there's a carry, we had to add 1 first
+        else:
+            steps += 2 - carry  # If the bit is '1', we either just add 1 (if no carry) or we have already added and just divide
+            carry = 1  # Generate a carry for the next significant bit
+
+    return steps + carry  # Finally, add any remaining carry
+
+
 
 
 
