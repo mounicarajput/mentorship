@@ -46,3 +46,63 @@ print(solution.isPalindrome(10))
 print(solution.isPalindrome(12321))
 
 
+
+#https://leetcode.com/problems/palindrome-linked-list
+
+"""Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+Example1:
+Input: head = [1, 2, 2, 1]
+Output: true
+
+Example2:
+Input: head = [1, 2]
+Output: false
+
+Constraints:
+The number of nodes in the list is in the range [1, 105].
+0 <= Node.val <= 9
+ Follow up: Could you do it in O(n) time and O(1) space?"""
+
+# Helper function to create linked list from a list of values
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        res = ''
+        while head:
+            res += str(head.val)
+            head = head.next
+
+        return res == res[::-1]
+
+
+# Helper function to create linked list from a list of values
+def create_linked_list(vals):
+    if not vals:
+        return None
+    head = ListNode(vals[0])
+    current = head
+    for val in vals[1:]:
+        current.next = ListNode(val)
+        current = current.next
+    return head
+
+
+# Example usage:
+vals = [1, 2, 2, 1]  # Example input
+head = create_linked_list(vals)
+sol = Solution()
+print(sol.isPalindrome(head))  # Output: True
+
+vals = [1, 2]  # Another example input
+head = create_linked_list(vals)
+sol = Solution()
+print(sol.isPalindrome(head))  # Output: False
+
+

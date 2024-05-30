@@ -15,22 +15,30 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        dummy = ListNode()
-        current = dummy
+        head  = ListNode()
+        root =head
         carry = 0
 
-        while l1 or l2 or carry:
-            val1 = (l1.val if l1 else 0)
-            val2 = (l2.val if l2 else 0)
-            carry, out = divmod(val1 + val2 + carry, 10)
+        while l1 or l2:
+            v1 = l1.val if l1 else 0
+            v2 = l2.val if l2 else 0
+            s  = v1 + v2 + carry
 
-            current.next = ListNode(out)
-            current = current.next
+            carry = s // 10
+            head.next = ListNode(s%10)
+            head = head.next
+            if l1:
+               l1=l1.next
 
-            l1 = (l1.next if l1 else None)
-            l2 = (l2.next if l2 else None)
+            if l2:
+               l2=l2.next
+            if carry :
+                head.next =ListNode (carry)
+                return root.next
 
-        return dummy.next
+
+
+
 
 
 # Helper function to create a linked list from a list of values
